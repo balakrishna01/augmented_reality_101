@@ -122,7 +122,7 @@ def render(frame, obj, projection, referenceImage, scale3d, color=False):
         # model points must be displaced
         points = np.array([[p[0] + w / 2, p[1] + h / 2, p[2]] for p in points])
         dst = cv2.perspectiveTransform(points.reshape(-1, 1, 3), projection)
-        framePts = np.int32(dst)
+        framePts = np.int(dst)
 
         cv2.fillConvexPoly(frame, framePts, (137, 27, 211))
 
@@ -194,10 +194,10 @@ def main():
         # Apply the homography transformation if we have enough good matches
         if len(matches) > MIN_MATCHES:
             # Get the good key points positions
-            sourcePoints = np.float32(
+            sourcePoints = np.float(
                 [referenceImagePts[m.queryIdx].pt for m in matches]
             ).reshape(-1, 1, 2)
-            destinationPoints = np.float32(
+            destinationPoints = np.float(
                 [sourceImagePts[m.trainIdx].pt for m in matches]
             ).reshape(-1, 1, 2)
 
@@ -208,14 +208,14 @@ def main():
 
             # Apply the perspective transformation to the source image corners
             h, w = referenceImage.shape
-            corners = np.float32(
+            corners = np.float(
                 [[0, 0], [0, h - 1], [w - 1, h - 1], [w - 1, 0]]
             ).reshape(-1, 1, 2)
             transformedCorners = cv2.perspectiveTransform(corners, homography)
 
             # Draw a polygon on the second image joining the transformed corners
             frame = cv2.polylines(
-                frame, [np.int32(transformedCorners)
+                frame, [np.int(transformedCorners)
                         ], True, 255, 3, cv2.LINE_AA,
             )
 
