@@ -134,7 +134,7 @@ def main():
     # ============== Read data ==============
 
     # Load 3D model from OBJ file
-    obj = OBJ("chair.obj", swapyz=True)
+    obj = OBJ("B:\Xtendr\augmented_reality_101\src\chair.obj", swapyz=True)
 
     # Scale 3D model
     scale3d = 8
@@ -144,11 +144,11 @@ def main():
 
     # Minimum number of matches
     MIN_MATCHES = 15
-
     # ============== Reference Image ==============
 
     # Load reference image and convert it to gray scale
-    referenceImage = cv2.imread("referenceImage.jpg", 0)
+    referenceImage = cv2.imread(
+        "B:\Xtendr\augmented_reality_101\src\referenceImage.jpg", 0)
 
     # ================== Recognize ================
 
