@@ -9,15 +9,9 @@ __email__ = "mafda13@gmail.com"
 __created__ = "Thu 14 May 2020 11:40:54 -0300"
 __modified__ = "Thu 29 May 2020 15:13:00 -0300"
 
-<<<<<<< HEAD
 # from flask import Flask, render_template, Response
 import streamlit as st
 import pandas as pd
-=======
-import streamlit as st
-import pandas as pd
-import numpy as np
->>>>>>> ea6e5cbe075475d32eb902759115b22003ca7a4c
 import cv2
 import math
 import threading
@@ -26,10 +20,7 @@ import matplotlib.pyplot as plt
 from objloader_simple import *
 from collections import deque
 
-<<<<<<< HEAD
 # app = Flask(__name__)
-=======
->>>>>>> ea6e5cbe075475d32eb902759115b22003ca7a4c
 st.title('OpenCV for AR')
 
 
@@ -143,11 +134,7 @@ def main():
     # ============== Read data ==============
 
     # Load 3D model from OBJ file
-<<<<<<< HEAD
     obj = OBJ("../models/chair.obj", swapyz=True)
-=======
-    obj = OBJ("./chair.obj", swapyz=True)
->>>>>>> ea6e5cbe075475d32eb902759115b22003ca7a4c
 
     # Scale 3D model
     scale3d = 8
@@ -161,11 +148,7 @@ def main():
     # ============== Reference Image ==============
 
     # Load reference image and convert it to gray scale
-<<<<<<< HEAD
     referenceImage = cv2.imread("../img/referenceImage.jpg", 0)
-=======
-    referenceImage = cv2.imread("./referenceImage.jpg", 0)
->>>>>>> ea6e5cbe075475d32eb902759115b22003ca7a4c
 
     # ================== Recognize ================
 
