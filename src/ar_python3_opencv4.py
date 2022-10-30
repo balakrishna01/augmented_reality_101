@@ -165,7 +165,12 @@ def main():
     # =============== Source Images ==============
 
     # Init video capture (load the source image)
-    cap = VideoCapture(0)
+
+    @st.cache(allow_output_mutation=True)
+    def get_cap():
+        return cv2.VideoCapture(0)
+
+    cap = get_cap()
 
     while True:
         # read the current frame
