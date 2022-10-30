@@ -9,7 +9,9 @@ __email__ = "mafda13@gmail.com"
 __created__ = "Thu 14 May 2020 11:40:54 -0300"
 __modified__ = "Thu 29 May 2020 15:13:00 -0300"
 
-
+import streamlit as st
+import pandas as pd
+import numpy as np
 import cv2
 import math
 import threading
@@ -17,6 +19,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from objloader_simple import *
 from collections import deque
+
+st.title('OpenCV for AR')
 
 
 class VideoCapture:
@@ -129,7 +133,7 @@ def main():
     # ============== Read data ==============
 
     # Load 3D model from OBJ file
-    obj = OBJ("./models/chair.obj", swapyz=True)
+    obj = OBJ("./chair.obj", swapyz=True)
 
     # Scale 3D model
     scale3d = 8
@@ -143,7 +147,7 @@ def main():
     # ============== Reference Image ==============
 
     # Load reference image and convert it to gray scale
-    referenceImage = cv2.imread("./img/referenceImage.jpg", 0)
+    referenceImage = cv2.imread("./referenceImage.jpg", 0)
 
     # ================== Recognize ================
 
@@ -154,7 +158,8 @@ def main():
     bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
 
     # Compute model keypoints and its descriptors
-    referenceImagePts, referenceImageDsc = orb.detectAndCompute(referenceImage, None)
+    referenceImagePts, referenceImageDsc = orb.detectAndCompute(
+        referenceImage, None)
 
     # =============== Source Images ==============
 
@@ -204,7 +209,8 @@ def main():
 
             # Draw a polygon on the second image joining the transformed corners
             frame = cv2.polylines(
-                frame, [np.int32(transformedCorners)], True, 255, 3, cv2.LINE_AA,
+                frame, [np.int32(transformedCorners)
+                        ], True, 255, 3, cv2.LINE_AA,
             )
 
             # ================= Pose Estimation ================
@@ -213,7 +219,8 @@ def main():
             projection = projection_matrix(camera_parameters, homography)
 
             # project cube or model
-            frame = render(frame, obj, projection, referenceImage, scale3d, False)
+            frame = render(frame, obj, projection,
+                           referenceImage, scale3d, False)
 
             # ===================== Display ====================
 
@@ -223,7 +230,8 @@ def main():
                 break
 
         else:
-            print("Not enough matches are found - %d/%d" % (len(matches), MIN_MATCHES))
+            print("Not enough matches are found - %d/%d" %
+                  (len(matches), MIN_MATCHES))
 
     cap.release()
     cv2.destroyAllWindows()
