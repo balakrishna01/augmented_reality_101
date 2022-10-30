@@ -134,8 +134,7 @@ def main():
     # ============== Read data ==============
 
     # Load 3D model from OBJ file
-    obj = OBJ(
-        "https://groups.csail.mit.edu/graphics/classes/6.837/F03/models/cow-nonormals.obj", swapyz=True)
+    obj = OBJ("chair.obj", swapyz=True)
 
     # Scale 3D model
     scale3d = 8
@@ -145,11 +144,11 @@ def main():
 
     # Minimum number of matches
     MIN_MATCHES = 15
+
     # ============== Reference Image ==============
 
     # Load reference image and convert it to gray scale
-    referenceImage = cv2.imread(
-        "https://www.google.com/search?q=target+image&tbm=isch&ved=2ahUKEwiD24eZvIj7AhUjT3wKHbiNAAQQ2-cCegQIABAA&oq=target&gs_lcp=CgNpbWcQARgAMgQIIxAnMgQIABBDMgQIABBDMgcIABCxAxBDMgcIABCxAxBDMgQIABBDMgQIABBDMgQIABBDMggIABCABBCxAzIFCAAQgAQ6BggAEAcQHjoLCAAQgAQQsQMQgwE6CAgAELEDEIMBOgcIABCABBADUIUJWKkNYLQZaABwAHgAgAGEAYgByAWSAQMzLjSYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=SLNeY4OXEqOe8QO4m4Ig&bih=845&biw=1745&rlz=1C1ONGR_enIN999IN999#imgrc=oGOogYQjfRPw0M&imgdii=hGDidJihpx1YqM", 0)
+    referenceImage = cv2.imread("referenceImage.jpg", 0)
 
     # ================== Recognize ================
 
